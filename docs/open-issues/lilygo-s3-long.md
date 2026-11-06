@@ -13,9 +13,10 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
 - On 2026-11-06 a compile-only lab profile built with ESPHome 2026.8.0 and ESP-IDF 5.5.5. The image was 2,342,479
   bytes; the link reported 159,691 bytes of 341,760 bytes of internal DIRAM used. These are build figures, not free
   heap measurements on a running screen. The build used dummy Wi-Fi and no API encryption and must not be flashed.
-- On 2026-11-06 the ESPHome 2026.9.0 container reached the linked size report, with 159,635 bytes of 341,760 bytes of
-  DIRAM used. Its generated LVGL constructor specifies a full buffer, full refresh and rounding 4. The captured log ends
-  without ESPHome's success message, so a completed 2026.9.0 build is not yet established.
+- On 2026-11-06 the compile-only profile built with ESPHome 2026.9.0 and ESP-IDF 5.5.5. Capturing the container's
+  stdout and stderr separately confirmed exit status 0 and ESPHome's success message; the image was 2,333,971 bytes,
+  with 159,635 bytes of 341,760 bytes of DIRAM used at link time. Generated LVGL code specifies a full buffer, full
+  refresh and rounding 4. This image also uses dummy Wi-Fi and no API encryption and must not be flashed.
 - The 3.4-inch diagonal and 640 x 180 pixels give a nominal 195.5 dpi. Tessera's compact-grid proposal suggests
   three columns by one row, with cells roughly 26 x 10 mm. This is a calculation, not a reading test on glass.
 - The vendor example uses the `axs15231` touch platform for the CST3530 touch controller. A community example uses
@@ -25,6 +26,12 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
   readings and calibration still determine where a physical touch lands, so this does not select a transform by itself.
 - On 2026-11-06 the 17 existing `tests/test_grid.py` tests passed. They exercise general grid handling, not this
   board's rendered tiles, page navigation or dialogs. The layout audit does not include an uncatalogued lab board.
+- On 2026-11-06 the existing WASM layout audit refused this lab shape at initialization: its generated preview has no
+  compact look at this density. No card layouts were checked. The resolved 2026.9.0 profile has a 48 px top offset,
+  49 px page bar, 9 px side margins and 8 px column gaps. On a 640 x 180 canvas, the grid code therefore gives a
+  three-column, one-row page approximately 202 x 83 px per cell with the page bar, about 26.2 x 10.8 mm at 195.5 dpi.
+  With one page, the hidden bar lets the grid grow to 123 px high. These are calculations, not measurements of drawn
+  cards, navigation, settings or dialogs; a board-specific preview and physical checks are still needed.
 - LilyGO's repository contains `firmware/factory-cst3530.bin` and a factory example. The binary's exact board revision,
   contents and flash offsets have not been verified; it is a recovery candidate, not proof of a restorable factory
   installation. The vendor describes BOOT and RST button entry into download mode in its README.
