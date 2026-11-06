@@ -32,6 +32,15 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
   three-column, one-row page approximately 202 x 83 px per cell with the page bar, about 26.2 x 10.8 mm at 195.5 dpi.
   With one page, the hidden bar lets the grid grow to 123 px high. These are calculations, not measurements of drawn
   cards, navigation, settings or dialogs; a board-specific preview and physical checks are still needed.
+- On 2026-11-06 a direct check of the add-on's default `Grid(3, 1)` confirmed three slots per page, eight pages and
+  24 single-tile slots in total. A wide tile fits starting in either of the first two cells, a full tile starts at the
+  first, and tall and square tiles do not fit. A screen's negotiated page and tile limits can differ; this check does
+  not exercise firmware placement or actual controls.
+- The WASM preview's styles and fonts are generated per catalog density by `web/wasm/preview_profiles.py` and
+  `generate_host_ui.py`. A board-specific preview needs a temporary compact profile near 196 dpi and a WASM rebuild
+  with Emscripten; that compiler was not available on the investigation machine. Check the preview's integer density
+  against the board's 195.538 dpi substitutions before relying on its measurements. Do not use an unrelated density
+  as proof of layout fit.
 - LilyGO's repository contains `firmware/factory-cst3530.bin` and a factory example. The binary's exact board revision,
   contents and flash offsets have not been verified; it is a recovery candidate, not proof of a restorable factory
   installation. The vendor describes BOOT and RST button entry into download mode in its README.
