@@ -10,6 +10,9 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
   redraw corruption and a crash with a fractional buffer.
 - On 2026-11-06 ESPHome 2026.8.0 resolved a test configuration with rounding 4 on LVGL alone to rounding 8, because
   LVGL takes the maximum of its own rounding and the display's. Setting 4 on both resolved both to 4.
+- On 2026-11-06 a compile-only lab profile built with ESPHome 2026.8.0 and ESP-IDF 5.5.5. The image was 2,342,479
+  bytes; the link reported 159,691 bytes of 341,760 bytes of internal DIRAM used. These are build figures, not free
+  heap measurements on a running screen. The build used dummy Wi-Fi and no API encryption and must not be flashed.
 - The 3.4-inch diagonal and 640 x 180 pixels give a nominal 195.5 dpi. Tessera's compact-grid proposal suggests
   three columns by one row, with cells roughly 26 x 10 mm. This is a calculation, not a reading test on glass.
 - The vendor example uses the `axs15231` touch platform for the CST3530 touch controller. A community example uses
