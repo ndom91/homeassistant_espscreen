@@ -16,6 +16,7 @@ Rules:
 
 | File | What | Since |
 |---|---|---|
+| [lilygo-s3-long.md](lilygo-s3-long.md) | A 640 x 180 LilyGO board profile needs physical touch, redraw and layout validation before it can be supported | 2026-11-06 |
 | [blue-flash-p4.md](blue-flash-p4.md) | A whole frame of light blue, one frame, on the reTerminal D1001 and sometimes the Guition 10.1 under memory-bus load; the panel never reports an underrun | 2026-10-25 |
 | [addon-webrtc-loss-on-yellow.md](addon-webrtc-loss-on-yellow.md) | On a Home Assistant Yellow the add-on loses WebRTC packets of the biggest stream when a full view runs: the asyncio loop near one core | 2026-10-29 |
 | [full-view-first-link-empty-host.md](full-view-first-link-empty-host.md) | A full view's first attempt opens a link with an empty host (":80") and loses 10 s before the second works. Solved 2026-10-30 | 2026-10-29 |
