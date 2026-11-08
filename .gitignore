@@ -9,6 +9,7 @@
 # The owner's bench entries: the boards' own names, keys and calibration, never in Git.
 /guition-wallbox.yaml
 /cyd-2432s028.yaml
+.DS_Store
 
 
 # Personal device configuration (not part of the example)
