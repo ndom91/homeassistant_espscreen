@@ -72,6 +72,11 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
   example's normal touch address and the documented charger address, but an address match alone does not prove chip
   identity or working touch. The running `axs15231` driver requests `0x3B`, so test a CST3530-protocol driver against
   `0x58` before trying further coordinate changes.
+- On 2026-11-17 a local test adapted the independent CST3530 component at commit `34f17b88f866433e536b4f7133227743e870b980`
+  to use ESPHome's combined I2C write/read transaction, built on ESPHome 2026.9.0 and uploaded over OTA. It uses `0x58`,
+  polling and no reset or interrupt pin, retaining the existing candidate calibration. A 90-second API log capture
+  produced no matching lines; whether Debug mode was enabled and whether touches occurred during it were not established.
+  No touch result or driver correctness is claimed from the build or upload.
 - The vendor example uses the `axs15231` touch platform for the CST3530 touch controller. A community example uses
   different transforms and native-axis calibration, so the correct settings for a particular board need a touch test.
 - In ESPHome 2026.8.0, touch coordinates are transformed and normalized to the display's native dimensions before
