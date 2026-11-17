@@ -82,6 +82,9 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
   calibration, so long-axis values exceed the X range and clamp at 179; mapped screen presses concentrate near one
   edge. A local candidate turns axis swapping and both mirrors off while keeping native-axis bounds. Its orientation
   and precision still need a controlled four-corner test, including the screen's current rotation setting.
+- On 2026-11-17 the unswapped, unmirrored candidate was built with ESPHome 2026.9.0 and uploaded over OTA. The person
+  testing reported that touchscreen input works as intended at both the screen's 0-degree and 180-degree settings.
+  Standby wake, continuous drags, plugin behavior and other detailed acceptance checks remain to be tested.
 - The vendor example uses the `axs15231` touch platform for the CST3530 touch controller. A community example uses
   different transforms and native-axis calibration, so the correct settings for a particular board need a touch test.
 - In ESPHome 2026.8.0, touch coordinates are transformed and normalized to the display's native dimensions before
