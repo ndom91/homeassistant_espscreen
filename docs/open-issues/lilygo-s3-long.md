@@ -67,6 +67,11 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
 - An independently published `cst3530` ESPHome component targets `0x58` and the same report register on a different
   Waveshare board. It is a candidate, not a tested drop-in: its bus transaction semantics, licensing and compatibility
   with this project's pinned ESPHome version need review before use.
+- On 2026-11-17, after the person testing enabled Debug mode, the diagnostic firmware's boot-time scan reported
+  `0x58` and `0x6A` on SDA 15 / SCL 10 at 50 kHz, with no `0x3B` in the reported results. This matches the CST3530
+  example's normal touch address and the documented charger address, but an address match alone does not prove chip
+  identity or working touch. The running `axs15231` driver requests `0x3B`, so test a CST3530-protocol driver against
+  `0x58` before trying further coordinate changes.
 - The vendor example uses the `axs15231` touch platform for the CST3530 touch controller. A community example uses
   different transforms and native-axis calibration, so the correct settings for a particular board need a touch test.
 - In ESPHome 2026.8.0, touch coordinates are transformed and normalized to the display's native dimensions before
