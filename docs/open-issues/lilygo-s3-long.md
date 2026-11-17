@@ -58,6 +58,15 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
 - The person testing reported that the screen stayed on and online. Source inspection found a reason for the missing
   INFO diagnostics: `runtime_tiles::apply_debug_mode()` sets the runtime logger to WARN unless the screen's Debug mode
   is on, even when the firmware was compiled at DEBUG. Enable that setting for the diagnostic capture, then turn it off.
+- LilyGO's separate CST3530 example configures SDA 15, SCL 10, interrupt 11 and reset 2, and its Hynitron driver
+  identifies normal I2C address `0x58`, boot address `0x5A` and a 32-bit `0xD0070000` touch report register.
+  ESPHome's `axs15231` driver instead defaults to `0x3B` and uses a different request. LilyGO's wiki and master
+  example call GPIO16 the touch reset, while the CST3530 branch calls GPIO2 touch reset and GPIO16 display reset.
+  The delivered controller and wiring have not yet been identified: the branch and wiki disagree, and the existing
+  scan has not been observed. Do not pulse either pin or replace the driver on that evidence alone.
+- An independently published `cst3530` ESPHome component targets `0x58` and the same report register on a different
+  Waveshare board. It is a candidate, not a tested drop-in: its bus transaction semantics, licensing and compatibility
+  with this project's pinned ESPHome version need review before use.
 - The vendor example uses the `axs15231` touch platform for the CST3530 touch controller. A community example uses
   different transforms and native-axis calibration, so the correct settings for a particular board need a touch test.
 - In ESPHome 2026.8.0, touch coordinates are transformed and normalized to the display's native dimensions before
@@ -111,5 +120,8 @@ change one transform at a time and repeat, without performing Home Assistant act
 ## Pointers
 - [LilyGO ESPHome example](https://github.com/Xinyuan-LilyGO/T-Display-S3-Long/tree/T-Display-S3-Long-cst3530/examples/ESPHome_LVGL_HelloWorld)
 - [LilyGO board repository and recovery instructions](https://github.com/Xinyuan-LilyGO/T-Display-S3-Long/tree/T-Display-S3-Long-cst3530)
+- [LilyGO wiki](https://wiki.lilygo.cc/products/t-display-series/t-display-s3-long/) and
+  [CST3530 driver](https://github.com/Xinyuan-LilyGO/T-Display-S3-Long/blob/3deece89098f25e7d155e41e4e0f5dd8b368ab02/lib/hyn_driver_for_esp32/hyn_chips/hyn_cst66xx.c)
+- [Independent CST3530 component](https://github.com/itconor/esphome-cst3530)
 - [Community touch calibration discussion](https://community.home-assistant.io/t/lilygo-t-display-s3-long-esphome-screen-support/1025774)
 - `docs/ADDING_A_BOARD.md`, `docs/RESPONSIVE.md`, `packages/looks/compact.yaml` and `packages/core.yaml`
