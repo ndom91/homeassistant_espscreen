@@ -77,6 +77,11 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
   polling and no reset or interrupt pin, retaining the existing candidate calibration. A 90-second API log capture
   produced no matching lines; whether Debug mode was enabled and whether touches occurred during it were not established.
   No touch result or driver correctness is claimed from the build or upload.
+- With Debug mode on, the person testing reported touches reached the screen but appeared reversed. The CST3530 driver
+  logged raw X approximately 0..179 and raw Y approximately 0..639. The old `swap_xy: true` exchanges those before
+  calibration, so long-axis values exceed the X range and clamp at 179; mapped screen presses concentrate near one
+  edge. A local candidate turns axis swapping and both mirrors off while keeping native-axis bounds. Its orientation
+  and precision still need a controlled four-corner test, including the screen's current rotation setting.
 - The vendor example uses the `axs15231` touch platform for the CST3530 touch controller. A community example uses
   different transforms and native-axis calibration, so the correct settings for a particular board need a touch test.
 - In ESPHome 2026.8.0, touch coordinates are transformed and normalized to the display's native dimensions before
