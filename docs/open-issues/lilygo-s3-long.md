@@ -55,6 +55,9 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
   API log observation did not show the diagnostic or I2C lines. Two API log messages reported the previous boot's
   lowest free internal memory, 192,544 bytes at 305 seconds. These observations do not establish an I2C scan result or
   a cause of the touch failure; check the running firmware's health and logging before interpreting missing messages.
+- The person testing reported that the screen stayed on and online. Source inspection found a reason for the missing
+  INFO diagnostics: `runtime_tiles::apply_debug_mode()` sets the runtime logger to WARN unless the screen's Debug mode
+  is on, even when the firmware was compiled at DEBUG. Enable that setting for the diagnostic capture, then turn it off.
 - The vendor example uses the `axs15231` touch platform for the CST3530 touch controller. A community example uses
   different transforms and native-axis calibration, so the correct settings for a particular board need a touch test.
 - In ESPHome 2026.8.0, touch coordinates are transformed and normalized to the display's native dimensions before
