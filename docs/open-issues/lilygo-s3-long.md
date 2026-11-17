@@ -43,6 +43,9 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
   ESPHome 2026.9.0 config shows the core's extension replaced them with swap and both mirrors false, while calibration
   remains x 0..640 and y 0..180. Test the PR's transform as a candidate before changing the driver; the absence of
   logged presses still needs a separate explanation if that test fails.
+- On 2026-11-17 a private build with that candidate transform and the selected Status and Timers plugin packages
+  compiled and was uploaded over OTA. The encrypted API reconnected afterwards. The transform, plugin execution and
+  retention of settings and layout still need physical validation; compilation and reconnection do not establish them.
 - The vendor example uses the `axs15231` touch platform for the CST3530 touch controller. A community example uses
   different transforms and native-axis calibration, so the correct settings for a particular board need a touch test.
 - In ESPHome 2026.8.0, touch coordinates are transformed and normalized to the display's native dimensions before
