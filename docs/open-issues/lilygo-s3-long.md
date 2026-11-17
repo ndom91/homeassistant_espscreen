@@ -20,8 +20,13 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
 - The 3.4-inch diagonal and 640 x 180 pixels give a nominal 195.5 dpi. Tessera's compact-grid proposal suggests
   three columns by one row, with cells roughly 26 x 10 mm. This is a calculation, not a reading test on glass.
 - On 2026-11-17 the local lab profile was changed to four columns by one row, and one column by four rows standing up.
-  ESPHome 2026.9.0 accepted the private test configuration with placeholder Wi-Fi credentials. The four-column layout
-  has not been built or checked on the glass; the three-column figures and tests below remain historical.
+  ESPHome 2026.9.0 built a private test configuration with encrypted API. On the same day the factory image was flashed
+  to a board using the ROM bootloader and its write hash verified. The serial port later reported a memory health line,
+  but no display, touch, Wi-Fi or Home Assistant behavior was confirmed in that observation. The three-column figures
+  and tests below remain historical.
+- Before that flash, two independent full 16 MB ROM-bootloader reads matched. Two reads through the ESPHome flasher stub
+  had stopped early with serial data-stream errors, so the stub path is still unproven. The private backup was not restored
+  to the board and has not been tested as a recovery image.
 - The vendor example uses the `axs15231` touch platform for the CST3530 touch controller. A community example uses
   different transforms and native-axis calibration, so the correct settings for a particular board need a touch test.
 - In ESPHome 2026.8.0, touch coordinates are transformed and normalized to the display's native dimensions before
