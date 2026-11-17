@@ -50,6 +50,11 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
   capture around a requested reset and taps recorded no matching touch or I2C lines; it did not show the USB disconnect
   or a boot scan, so it cannot establish whether the reset or the boot diagnostics were captured. A further diagnostic
   build or another capture is needed before attributing the failure to the controller, bus or driver.
+- On 2026-11-17 a private diagnostic build with debug logging, repeated boot-scan output and a touch callback compiled
+  and was uploaded over OTA; its API reconnected. A 26-second serial observation had no lines and a 26-second encrypted
+  API log observation did not show the diagnostic or I2C lines. Two API log messages reported the previous boot's
+  lowest free internal memory, 192,544 bytes at 305 seconds. These observations do not establish an I2C scan result or
+  a cause of the touch failure; check the running firmware's health and logging before interpreting missing messages.
 - The vendor example uses the `axs15231` touch platform for the CST3530 touch controller. A community example uses
   different transforms and native-axis calibration, so the correct settings for a particular board need a touch test.
 - In ESPHome 2026.8.0, touch coordinates are transformed and normalized to the display's native dimensions before
