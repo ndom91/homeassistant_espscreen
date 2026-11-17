@@ -46,6 +46,10 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
 - On 2026-11-17 a private build with that candidate transform and the selected Status and Timers plugin packages
   compiled and was uploaded over OTA. The encrypted API reconnected afterwards. The transform, plugin execution and
   retention of settings and layout still need physical validation; compilation and reconnection do not establish them.
+- After the candidate transform update the person testing reported that touch still did not work. A 90-second serial
+  capture around a requested reset and taps recorded no matching touch or I2C lines; it did not show the USB disconnect
+  or a boot scan, so it cannot establish whether the reset or the boot diagnostics were captured. A further diagnostic
+  build or another capture is needed before attributing the failure to the controller, bus or driver.
 - The vendor example uses the `axs15231` touch platform for the CST3530 touch controller. A community example uses
   different transforms and native-axis calibration, so the correct settings for a particular board need a touch test.
 - In ESPHome 2026.8.0, touch coordinates are transformed and normalized to the display's native dimensions before
