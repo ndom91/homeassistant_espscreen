@@ -27,6 +27,15 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
 - Before that flash, two independent full 16 MB ROM-bootloader reads matched. Two reads through the ESPHome flasher stub
   had stopped early with serial data-stream errors, so the stub path is still unproven. The private backup was not restored
   to the board and has not been tested as a recovery image.
+- On 2026-11-17 the screen joined Wi-Fi, was added to Home Assistant and appeared online in Tessera with a four-column,
+  one-row grid. A tile appeared on the physical panel, but presses did not operate it or wake the screen. Turning off
+  page buttons made the tiles taller according to the person testing the glass. Touch remains unverified and broken in
+  this test; the page-button band is a significant use of the panel's height.
+- A 60-second serial observation during reported touches on 2026-11-17 contained no matching touch presses or touch/I2C
+  warnings. This does not prove the controller is absent: the logging and the tap timing need checking. The lab profile
+  uses ESPHome's `axs15231` touch driver as in LilyGO's ESPHome example, while LilyGO's separate CST3530 touch example
+  uses its Hynitron driver. The controller identity, I2C address, protocol and any power or reset requirements need
+  checking before choosing a replacement driver.
 - The vendor example uses the `axs15231` touch platform for the CST3530 touch controller. A community example uses
   different transforms and native-axis calibration, so the correct settings for a particular board need a touch test.
 - In ESPHome 2026.8.0, touch coordinates are transformed and normalized to the display's native dimensions before
