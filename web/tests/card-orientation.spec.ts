@@ -6,7 +6,7 @@ describe("per-tile icon and text layout", () => {
   const look = cardLook(shape);
   const room = { width: 125, height: 104, outer: 114, padY: 4 };
 
-  it("stacks a LilyGO-sized card only when requested", () => {
+  it("stacks a short single-cell card only when requested", () => {
     expect(cardHead(shape, look, room, 0, "", true).title.center).toBeUndefined();
     const stack = cardHead(shape, look, room, 0, "", true, false, true, "vertical");
     expect(stack.title.center).toBe(true);

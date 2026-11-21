@@ -1,7 +1,8 @@
 #pragma once
 
 // The orientation of an ordinary card head. It knows the available height and
-// the requested orientation, not the tile's entity or its controls.
+// the requested orientation, not the tile's entity or its controls. tests/test_card_orientation.cpp checks the
+// automatic threshold, both overrides and the fallback when a stack does not fit.
 namespace card_orientation {
 
 enum class Choice { automatic, horizontal, vertical };
