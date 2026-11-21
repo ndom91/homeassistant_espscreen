@@ -253,5 +253,9 @@ messages, release notes, the README or the docs, where the button under the titl
 
 ## Owner's machine
 
+For the experimental LilyGO fork, see [Updating the LilyGO lab setup](docs/LILYGO_LAB_DEPLOY.md).
+On the machine that runs the lab, `.esphome/lilygo-deploy.local.md` holds the private profile and deployment targets.
+Use the runbook's [upstream sync workflow](docs/LILYGO_LAB_DEPLOY.md#sync-with-upstream) before merging Tessera changes into the fork.
+
 On the owner's machine, git-ignored `.esphome/owner-access.md` says how to reach their Home Assistant and screens for
 lookups and tests. If that file is missing you are not on the owner's machine: ask, don't guess.

@@ -18,7 +18,7 @@ HEADER = runtime_source()
 
 class IconSetTests(unittest.TestCase):
     def test_set_is_complete_and_carried_by_every_icon_font(self):
-        self.assertEqual(len(tile_icons.ICONS), 154)
+        self.assertEqual(len(tile_icons.ICONS), 156)
         self.assertTrue(any(group == 'Media and music' and len(icons) >= 20 for group, icons in tile_icons.GROUPS))
         self.assertEqual(len(set(tile_icons.GLYPHS.values())), len(tile_icons.GLYPHS))
         for code in tile_icons.GLYPHS.values():
@@ -91,10 +91,18 @@ class IconSetTests(unittest.TestCase):
         for state, name in tile_icons.WEATHER.items():
             self.assertRegex(weather, rf'condition == "{re.escape(state)}"[^\n]*return "\\U000{tile_icons.GLYPHS[name]}";')
         editor = tile_icons.editor()
-        self.assertEqual(sum(len(group['icons']) for group in editor['groups']), 154)
+        self.assertEqual(sum(len(group['icons']) for group in editor['groups']), 156)
         self.assertIn(f'"\\U000{editor["sun"]["above_horizon"]}" : "\\U000{editor["sun"]["below_horizon"]}"', HEADER)
 
 class IconOptionTests(unittest.IsolatedAsyncioTestCase):
+    def test_volume_icons_can_be_picked_and_sent_for_buttons(self):
+        media = next(icons for group, icons in tile_icons.GROUPS if group == 'Media and music')
+        for name, code, label in [('volume-minus', 'F075E', 'Volume down'), ('volume-plus', 'F075D', 'Volume up')]:
+            self.assertIn((name, code, label), media)
+            layout = validate_layout({'title': 'Audio', 'tiles': [
+                {'entity': 'button.audio', 'name': label, 'options': {'icon': name}}]})
+            self.assertEqual(state_message(0, layout['tiles'][0], {})['o']['icon'], code)
+
     def test_validation_accepts_the_set_and_auto_only(self):
         for value in ('auto', 'lamp', 'spotify', 'speaker'):
             layout = validate_layout({'title': 'Home', 'tiles': [{'entity': 'media_player.a', 'options': {'icon': value}}]})

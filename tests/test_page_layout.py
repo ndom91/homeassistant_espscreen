@@ -56,6 +56,18 @@ class PageLayoutTests(unittest.TestCase):
         self.assertEqual(record["layout"]["pages"][1]["tiles"][0]["placement"], {"row": 0, "column": 0, "columns": 1, "rows": 1})
         self.assertEqual(legacy_projection(record)["tiles"], validate_layout(old, grid=grid)["tiles"])
 
+    def test_tile_orientation_survives_document_validation(self):
+        record = self.migrate({"title": "Screen", "tiles": [{"entity": "switch.test", "slot": 0}]})
+        appearance = record["layout"]["pages"][0]["tiles"][0]["appearance"]
+        appearance["orientation"] = "horizontal"
+        document = validate_document(record["layout"], Grid())
+        self.assertEqual(compile_tiles(document, Grid())[0]["options"]["orientation"], "horizontal")
+        with self.assertRaises(LayoutError):
+            legacy_projection(record)
+        appearance["orientation"] = "diagonal"
+        with self.assertRaises(ValueError):
+            validate_document(record["layout"], Grid())
+
     def test_rectangular_footprints_leave_future_sizes_capability_gated(self):
         record = self.migrate({"title": "Screen", "tiles": [
             {"entity": "media_player.test", "slot": 0, "options": {"size": "wide"}}]})

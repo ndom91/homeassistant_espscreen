@@ -97,3 +97,4 @@
 - [TESTING.md](TESTING.md): the levels of testing, from `tools/check.sh` to the whole chain and the upgrade from the last release.
 - [RELEASING.md](RELEASING.md): the two branches, the weekly release, a hotfix, the flash budget and the ESPHome versions.
 - [open-issues/](open-issues/README.md): what is not understood or solved yet, one file each with the measurements, what is ruled out and the experiment that decides; for anyone to pick up.
+- [Updating the LilyGO lab setup](LILYGO_LAB_DEPLOY.md): build and update the experimental screen and its separate Home Assistant app.

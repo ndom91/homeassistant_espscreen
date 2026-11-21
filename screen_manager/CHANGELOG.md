@@ -1,5 +1,9 @@
 ## Unreleased
 
+- **Pick Volume down and Volume up icons for tiles.** Both are in the Media and music group and use icons already on the screen.
+
+- **Choose the icon and text layout for a tile.** Plain single-cell entity and Go to page tiles can keep the automatic layout, put the icon beside the text, or put it above the name and second line. The screen must support the new option.
+
 - **Tessera is looking for funding.** The home overview asks for it, before the support card, with a button that mails Max: a day job comes first, and Tessera needs funding to stay alive. "Not now" puts it away for a week.
 
 ## 0.4.97 (firmware 0.60.0)

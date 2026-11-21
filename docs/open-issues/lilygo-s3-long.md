@@ -107,6 +107,10 @@ its AXS15231B panel needs display settings that differ from existing Tessera boa
   with Emscripten; that compiler was not available on the investigation machine. Check the preview's integer density
   against the board's 195.538 dpi substitutions before relying on its measurements. Do not use an unrelated density
   as proof of layout fit.
+- On 2026-11-19 the per-tile orientation change compiled with the local LilyGO diagnostic profile on ESPHome 2026.9.0.
+  The editor geometry test placed the icon, name and state in a simulated 125 x 104 px content box at 196 dpi.
+  Neither check verifies the fit on the physical screen. Test with the page bar both shown and hidden, including a
+  mix of automatic, horizontal and vertical tiles and a restart. The firmware was not uploaded.
 - LilyGO's repository contains `firmware/factory-cst3530.bin` and a factory example. The binary's exact board revision,
   contents and flash offsets have not been verified; it is a recovery candidate, not proof of a restorable factory
   installation. The vendor describes BOOT and RST button entry into download mode in its README.

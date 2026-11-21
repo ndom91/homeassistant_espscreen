@@ -694,6 +694,7 @@ api:
                     // option adds its name here. climate_range: a thermostat's range on its -/+, with the chip for its end.
                     auto features = root["features"].to<JsonArray>();
                     features.add("climate_range");
+                    features.add("tile_orientation");
                     // media_library (firmware 0.24.0+, app 0.4.42+): a player's speaker menu, shuffle, repeat, seek, its
                     // cover's colours as the card's ground, and its library with covers and a tap that plays.
                     features.add("media_library");
@@ -1152,6 +1153,8 @@ font:
       - "\U000F0994" # podcast
       - "\U000F04C3" # speaker
       - "\U000F0D38" # speaker-multiple
+      - "\U000F075E" # volume-minus
+      - "\U000F075D" # volume-plus
       - "\U000F17DB" # soundbar
       - "\U000F02CB" # headphones
       - "\U000F036C" # microphone
@@ -1259,8 +1262,6 @@ font:
       - "\U000F0140" # chevron-down
       - "\U000F17B3" # arrow-u-left-top
       - "\U000F040E" # play-pause
-      - "\U000F075D" # volume-plus
-      - "\U000F075E" # volume-minus
       - "\U000F075F" # volume-mute
       - "\U000F012C" # check
       - "\U000F03E4" # pause

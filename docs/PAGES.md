@@ -45,6 +45,9 @@ Reka has a part for what you need (Combobox, Popover, Tooltip, Dialog, Tabs, Sli
 Size and place, Controls, Icon and color) and a page's in three (Title, Navigation, Top bar). The icons of the
 editor's own controls are Material Design Icons, listed in `web/src/model/ui-icons.json`.
 
+The tile icon picker offers **Volume down** and **Volume up** under **Media and music**. Selecting one changes only
+the tile's icon, not its action.
+
 ### The address
 
 What is open is in the page's address, and nowhere else: the editor has one router (vue-router with a hash history,
@@ -180,6 +183,12 @@ index and value before updating the existing records. Open cards, page history
 and tile storage remain in place. Structural changes, older peers and edits
 that exceed one bounded packet use the full transaction. No second layout or
 compatibility decoder is stored on the screen.
+
+The per-tile icon and text layout is optional appearance data. Automatic is
+stored as no override, so existing layouts keep their behavior. Horizontal or
+Vertical is sent in the initial tile message of a full page transaction, only
+after the screen's hello advertises `tile_orientation`. An older screen is not
+sent a layout that depends on the override.
 
 Keep the pre-upgrade backup if an older add-on must be restored. Older add-ons cannot read version 2. Stop the add-on before restoring a backup; restoring it deliberately discards changes made after that backup. Unknown future storage versions are refused without rewriting them.
 

@@ -75,6 +75,8 @@ GROUPS = (
         ('podcast', 'F0994', 'Podcast'),
         ('speaker', 'F04C3', 'Speaker'),
         ('speaker-multiple', 'F0D38', 'Speakers'),
+        ('volume-minus', 'F075E', 'Volume down'),
+        ('volume-plus', 'F075D', 'Volume up'),
         ('soundbar', 'F17DB', 'Soundbar'),
         ('headphones', 'F02CB', 'Headphones'),
         ('microphone', 'F036C', 'Microphone'),
@@ -203,8 +205,6 @@ FIXED = (
     ('chevron-down', 'F0140'),
     ('arrow-u-left-top', 'F17B3'),
     ('play-pause', 'F040E'),
-    ('volume-plus', 'F075D'),
-    ('volume-minus', 'F075E'),
     ('volume-mute', 'F075F'),
     ('check', 'F012C'),
     # Direct controls on wide cards (firmware 0.2.19+).
